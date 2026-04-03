@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API测试页面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #006b53;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fb;
+            border-radius: 8px;
+        }
+        .section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        button {
+            background: #006b53;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        button:hover {
+            background: #005542;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        .result h3 {
+            color: #006b53;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .status.success {
+            background: #e1f5ee;
+            color: #006b53;
+        }
+        .status.error {
+            background: #ffdad6;
+            color: #ba1a1a;
+        }
+        .status.loading {
+            background: #fff4e5;
+            color: #854f0b;
+        }
+        .company-item {
+            padding: 12px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .company-item:hover {
+            border-color: #006b53;
+            background: #f0faf7;
+        }
+        .company-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .company-detail {
+            font-size: 12px;
+            color: #666;
+        }
+        .note {
+            background: #fff4e5;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #854f0b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>企业信息搜索 API 测试</h1>
+        <p class="subtitle">用于测试企业信息搜索接口的功能和响应</p>
+
+        <!-- 测试1: 企业搜索 -->
+        <div class="section">
+            <h2>1. 企业信息搜索</h2>
+            <label>企业名称关键词：</label>
+            <input type="text" id="searchKeyword" placeholder="输入企业名称关键词（至少2个字符）" value="环保科技">
+            
+            <label>API端点：</label>
+            <input type="text" id="apiEndpoint" placeholder="/api/company/search" value="/api/company/search">
+            
+            <button onclick="testCompanySearch()">测试搜索</button>
+            
+            <div class="result" id="searchResult" style="display:none;">
+                <h3>响应结果</h3>
+                <div id="searchStatus"></div>
+                <div id="searchData"></div>
+            </div>
+        </div>
+
+        <!-- 测试2: 模拟数据 -->
+        <div class="section">
+            <h2>2. 使用模拟数据测试</h2>
+            <p style="margin-bottom: 15px; color: #666; font-size: 14px;">
+                当后端API未就绪时，可以使用模拟数据测试前端功能
+            </p>
+            <button onclick="testWithMockData()">使用模拟数据</button>
+            
+            <div class="result" id="mockResult" style="display:none;">
+                <h3>模拟数据</h3>
+                <div id="mockData"></div>
+            </div>
+        </div>
+
+        <!-- 测试3: 表单验证 -->
+        <div class="section">
+            <h2>3. 表单验证测试</h2>
+            
+            <label>手机号：</label>
+            <input type="text" id="testPhone" placeholder="13800138000">
+            <button onclick="testPhoneValidation()">验证手机号</button>
+            
+            <label style="margin-top: 15px;">邮箱：</label>
+            <input type="text" id="testEmail" placeholder="example@company.com">
+            <button onclick="testEmailValidation()">验证邮箱</button>
+            
+            <label style="margin-top: 15px;">统一社会信用代码：</label>
+            <input type="text" id="testCreditCode" placeholder="91110000MA01234567" maxlength="18">
+            <button onclick="testCreditCodeValidation()">验证信用代码</button>
+            
+            <div class="result" id="validationResult" style="display:none;">
+                <h3>验证结果</h3>
+                <div id="validationData"></div>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>📝 注意事项：</strong><br>
+            1. 当前使用模拟数据，实际部署时需要替换为真实API<br>
+            2. API端点需要根据实际后端地址配置<br>
+            3. 建议配置CORS以支持跨域请求<br>
+            4. 详细API文档请查看 API_DOCUMENTATION.md
+        </div>
+    </div>
+
+    <script>
+        // 测试企业搜索
+        async function testCompanySearch() {
+            const keyword = document.getElementById('searchKeyword').value.trim();
+            const endpoint = document.getElementById('apiEndpoint').value.trim();
+            const resultDiv = document.getElementById('searchResult');
+            const statusDiv = document.getElementById('searchStatus');
+            const dataDiv = document.getElementById('searchData');
+
+            if (keyword.length < 2) {
+                alert('请输入至少2个字符的关键词');
+                return;
+            }
+
+            resultDiv.style.display = 'block';
+            statusDiv.innerHTML = '<span class="status loading">正在请求...</span>';
+            dataDiv.innerHTML = '';
+
+            try {
+                // 尝试调用真实API
+                const response = await fetch(`${endpoint}?keyword=${encodeURIComponent(keyword)}`);
+                const data = await response.json();
+
+                if (data.success && data.companies && data.companies.length > 0) {
+                    statusDiv.innerHTML = '<span class="status success">✓ 请求成功</span>';
+                    displayCompanies(data.companies, dataDiv);
+                } else {
+                    statusDiv.innerHTML = '<span class="status error">未找到相关企业</span>';
+                    dataDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                }
+            } catch (error) {
+                // API未就绪，使用模拟数据
+                statusDiv.innerHTML = '<span class="status error">⚠ API未就绪，使用模拟数据</span>';
+                const mockData = getMockCompanyData(keyword);
+                displayCompanies(mockData.companies, dataDiv);
+            }
+        }
+
+        // 使用模拟数据测试
+        function testWithMockData() {
+            const keyword = document.getElementById('searchKeyword').value.trim() || '环保';
+            const resultDiv = document.getElementById('mockResult');
+            const dataDiv = document.getElementById('mockData');
+
+            resultDiv.style.display = 'block';
+            const mockData = getMockCompanyData(keyword);
+            displayCompanies(mockData.companies, dataDiv);
+        }
+
+        // 显示企业列表
+        function displayCompanies(companies, container) {
+            let html = '<div style="margin-top: 10px;">';
+            companies.forEach(company => {
+                html += `
+                    <div class="company-item" onclick="selectCompany(this)">
+                        <div class="company-name">${company.name}</div>
+                        <div class="company-detail">信用代码：${company.creditCode}</div>
+                        <div class="company-detail">法人：${company.legalPerson} | 成立：${company.establishDate}</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            html += '<pre style="margin-top: 15px;">' + JSON.stringify(companies, null, 2) + '</pre>';
+            container.innerHTML = html;
+        }
+
+        // 选择企业
+        function selectCompany(element) {
+            const items = document.querySelectorAll('.company-item');
+            items.forEach(item => item.style.background = 'white');
+            element.style.background = '#e1f5ee';
+            alert('企业已选中！在实际应用中，这里会自动填充表单。');
+        }
+
+        // 获取模拟数据
+        function getMockCompanyData(keyword) {
+            return {
+                success: true,
+                companies: [
+                    {
+                        name: `北京${keyword}有限公司`,
+                        creditCode: '91110000MA01234567',
+                        legalPerson: '张三',
+                        establishDate: '2020-01-15'
+                    },
+                    {
+                        name: `上海${keyword}股份有限公司`,
+                        creditCode: '91310000MA01234568',
+                        legalPerson: '李四',
+                        establishDate: '2018-06-20'
+                    },
+                    {
+                        name: `深圳${keyword}科技有限公司`,
+                        creditCode: '91440300MA01234569',
+                        legalPerson: '王五',
+                        establishDate: '2019-03-10'
+                    }
+                ]
+            };
+        }
+
+        // 测试手机号验证
+        function testPhoneValidation() {
+            const phone = document.getElementById('testPhone').value;
+            const phoneRegex = /^1[3-9]\d{9}$/;
+            const isValid = phoneRegex.test(phone);
+            
+            showValidationResult('手机号', phone, isValid, '11位数字，以1开头，第二位为3-9');
+        }
+
+        // 测试邮箱验证
+        function testEmailValidation() {
+            const email = document.getElementById('testEmail').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const isValid = emailRegex.test(email);
+            
+            showValidationResult('邮箱', email, isValid, '标准邮箱格式');
+        }
+
+        // 测试信用代码验证
+        function testCreditCodeValidation() {
+            const code = document.getElementById('testCreditCode').value;
+            const creditCodeRegex = /^[0-9A-Z]{18}$/;
+            const isValid = creditCodeRegex.test(code);
+            
+            showValidationResult('统一社会信用代码', code, isValid, '18位，由数字或大写字母组成');
+        }
+
+        // 显示验证结果
+        function showValidationResult(fieldName, value, isValid, rule) {
+            const resultDiv = document.getElementById('validationResult');
+            const dataDiv = document.getElementById('validationData');
+            
+            resultDiv.style.display = 'block';
+            
+            const statusClass = isValid ? 'success' : 'error';
+            const statusText = isValid ? '✓ 验证通过' : '✗ 验证失败';
+            
+            dataDiv.innerHTML = `
+                <span class="status ${statusClass}">${statusText}</span>
+                <div style="margin-top: 10px;">
+                    <strong>字段：</strong>${fieldName}<br>
+                    <strong>输入值：</strong>${value || '(空)'}<br>
+                    <strong>验证规则：</strong>${rule}<br>
+                    <strong>结果：</strong>${isValid ? '符合规则' : '不符合规则'}
+                </div>
+            `;
+        }
+
+        // 自动转换信用代码为大写
+        document.getElementById('testCreditCode').addEventListener('input', function() {
+            this.value = this.value.toUpperCase().replace(/[^0-9A-Z]/g, '');
+        });
+    </script>
+</body>
+</html>
