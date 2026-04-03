@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <title>生态环境技术调查填报</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f8f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-container": "#004117",
+                        "outline-variant": "#bccac2",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#bde9ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-fixed-variant": "#005320",
+                        "tertiary-fixed-dim": "#6ddd81",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#386476",
+                        "inverse-primary": "#68dab6",
+                        "surface": "#f8f9fb",
+                        "surface-dim": "#d8dadc",
+                        "tertiary": "#006e2c",
+                        "on-primary-fixed": "#002117",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001f29",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary-fixed": "#002108",
+                        "tertiary-fixed": "#89fa9b",
+                        "surface-container": "#eceef0",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#003f30",
+                        "surface-tint": "#006b53",
+                        "outline": "#6d7a74",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#3d687b",
+                        "tertiary-container": "#43b55e",
+                        "primary-fixed": "#86f7d1",
+                        "secondary-fixed-dim": "#a1cde2",
+                        "primary-fixed-dim": "#68dab6",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-fixed-variant": "#00513e",
+                        "surface-bright": "#f8f9fb",
+                        "on-surface-variant": "#3d4944",
+                        "secondary-container": "#bae6fc",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#3cb391",
+                        "on-secondary-fixed-variant": "#1e4c5d",
+                        "primary": "#006b53",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        
+        .step-hidden { display: none; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .range-input-group {
+            display: none;
+        }
+        .range-input-group.active {
+            display: flex;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-[#f8f9fb] shadow-sm flex items-center px-4 h-16">
+        <div class="flex items-center space-x-3">
+            <h1 class="font-['Manrope'] font-bold text-lg tracking-tight text-[#006b53]">生态环境技术调查填报</h1>
+        </div>
+        <div class="ml-auto">
+            <span class="text-xs text-on-surface-variant" id="stepIndicator">步骤 1/4</span>
+        </div>
+    </header>
+
+    <main class="pt-20 px-4 space-y-4 max-w-2xl mx-auto pb-32">
+        <!-- 说明卡片 -->
+        <section class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_rgba(0,107,83,0.05)] relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+            <div class="relative z-10">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="material-symbols-outlined text-primary">description</span>
+                    <h2 class="text-primary font-bold text-lg">调查说明</h2>
+                </div>
+                <p class="text-on-surface-variant text-sm leading-relaxed">
+                    生态环境工艺（设备）是打好污染防治攻染战的“武器”，直接决定了污染防治攻坚战的成败。现开展全国范围的生态环境工艺（设备）调查工作，为提升生态环境管理决策效能提供数据支撑。根据调查内容的体现形式主要分为工艺、设备和材料三类。请技术持有方，根据本公司所持有技术的专业方向和技术类型选择表单。同一表单可重复选择。例如：本公司持有大气材料技术2项，固废处理设备1项，则选择两次”大气方向-材料“、1次”固废方向-设备“，确保本公司技术应填尽填。
+                </p>
+            </div>
+        </section>
+
+        <!-- 填报时间提示 -->
+        <section class="bg-[#fef2f2] border-l-4 border-[#ef4444] p-4 rounded-lg">
+            <p class="text-[#ef4444] text-sm font-bold leading-relaxed">
+                本期填报时间：2025-12-01 00:00:00 ~ 2026-05-31 00:00:00
+            </p>
+        </section>
+
+        <form id="surveyForm">
+            <!-- 步骤1: 基础信息 -->
+            <div class="step-section" data-step="1">
+                <div class="bg-secondary-container/20 p-4 rounded-xl mb-4">
+                    <h3 class="font-bold text-primary mb-2">第一步：基础信息</h3>
+                    <p class="text-xs text-on-surface-variant">请填写企业和联系人的基本信息</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- 姓名 -->
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            姓名 <span class="text-error">*</span>
+                        </label>
+                        <input type="text" name="name" required 
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="请输入您的姓名"/>
+                    </div>
+
+                    <!-- 手机 -->
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            手机 <span class="text-error">*</span>
+                        </label>
+                        <input type="tel" name="phone" required pattern="[0-9]{11}"
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="请输入11位手机号"/>
+                    </div>
+
+                    <!-- 电子邮箱 -->
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            电子邮箱 <span class="text-error">*</span>
+                        </label>
+                        <input type="email" name="email" required
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="example@company.com"/>
+                    </div>
+
+                    <!-- 单位全称 -->
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            单位全称 <span class="text-error">*</span>
+                        </label>
+                        <input type="text" name="company" required
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="请输入单位全称"/>
+                    </div>
+
+                    <!-- 统一社会信用代码 -->
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            统一社会信用代码 <span class="text-error">*</span>
+                        </label>
+                        <input type="text" name="creditCode" required
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="18位统一社会信用代码"/>
+                    </div>
+
+                    <!-- 法定代表人 -->
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            法定代表人（负责人） <span class="text-error">*</span>
+                        </label>
+                        <input type="text" name="legalPerson" required
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="请输入法定代表人姓名"/>
+                    </div>
+
+                    <!-- 成立时间 -->
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            成立时间 <span class="text-error">*</span>
+                        </label>
+                        <input type="date" name="establishDate" required
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 步骤2: 选择体现形式 -->
+            <div class="step-section step-hidden" data-step="2">
+                <div class="bg-secondary-container/20 p-4 rounded-xl mb-4">
+                    <h3 class="font-bold text-primary mb-2">第二步：选择类型</h3>
+                    <p class="text-xs text-on-surface-variant">请选择您要填报的技术体现形式</p>
+                </div>
+
+                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-primary">
+                    <label class="block text-on-surface font-semibold text-base mb-4">
+                        体现形式 <span class="text-error">*</span>
+                    </label>
+                    <div class="space-y-3">
+                        <label class="flex items-center p-4 rounded-xl border-2 border-outline-variant/20 hover:bg-surface-container-low transition-colors cursor-pointer group">
+                            <input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20" 
+                                type="radio" name="formType" value="process" required/>
+                            <div class="ml-3 flex-1">
+                                <span class="text-on-surface group-hover:text-primary font-medium block">工艺类</span>
+                                <span class="text-xs text-on-surface-variant">填报工艺技术相关信息</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-4 rounded-xl border-2 border-outline-variant/20 hover:bg-surface-container-low transition-colors cursor-pointer group">
+                            <input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20" 
+                                type="radio" name="formType" value="material" required/>
+                            <div class="ml-3 flex-1">
+                                <span class="text-on-surface group-hover:text-primary font-medium block">材料类</span>
+                                <span class="text-xs text-on-surface-variant">填报材料技术相关信息</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-4 rounded-xl border-2 border-outline-variant/20 hover:bg-surface-container-low transition-colors cursor-pointer group">
+                            <input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20" 
+                                type="radio" name="formType" value="equipment" required/>
+                            <div class="ml-3 flex-1">
+                                <span class="text-on-surface group-hover:text-primary font-medium block">设备类</span>
+                                <span class="text-xs text-on-surface-variant">填报设备技术相关信息</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 对象名称 -->
+                <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm mt-4">
+                    <label class="block text-on-surface font-semibold text-sm mb-2">
+                        <span id="objectNameLabel">技术名称</span> <span class="text-error">*</span>
+                    </label>
+                    <input type="text" name="objectName" required
+                        class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                        placeholder="请输入名称"/>
+                </div>
+            </div>
+
+            <!-- 步骤3: 动态表单区域 -->
+            <div class="step-section step-hidden" data-step="3">
+                <div class="bg-secondary-container/20 p-4 rounded-xl mb-4">
+                    <h3 class="font-bold text-primary mb-2">第三步：详细信息</h3>
+                    <p class="text-xs text-on-surface-variant">请填写具体的技术信息</p>
+                </div>
+
+                <!-- 工艺类表单 -->
+                <div id="processForm" class="dynamic-form step-hidden">
+                    <div class="space-y-4">
+                        <!-- 专业领域 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-primary">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                专业领域 <span class="text-error">*</span>
+                            </label>
+                            <select name="process_field" required
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择</option>
+                                <option value="water">水处理</option>
+                                <option value="air">大气污染治理</option>
+                                <option value="solid">固废处理与综合利用</option>
+                                <option value="eco">生态修复</option>
+                                <option value="soil">土壤修复</option>
+                                <option value="energy">节能与碳减排</option>
+                            </select>
+                        </div>
+
+                        <!-- 工艺颗粒度 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-secondary-container">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                工艺颗粒度 <span class="text-error">*</span>
+                            </label>
+                            <select name="process_granularity" required
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择</option>
+                                <option value="comprehensive">综合型工艺系统流程</option>
+                                <option value="functional">特定功能型工艺流程</option>
+                                <option value="unit">处理单元型工艺</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+
+                        <!-- 工艺原理 -->
+                        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary-container">
+                            <label class="block text-on-surface font-semibold text-base mb-3">
+                                工艺原理 <span class="text-error">*</span>
+                            </label>
+                            <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_principle" value="physical"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">物理法</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_principle" value="chemical"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">化学法</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_principle" value="biological"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">生物法</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_principle" value="physicochemical"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">物理化学</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_principle" value="other" data-trigger-input="process_principle_other"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">其他</span>
+                                </label>
+                                <div class="range-input-group pl-8" id="process_principle_other">
+                                    <input type="text" name="process_principle_other_text" 
+                                        class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-2 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                                        placeholder="请说明其他工艺原理"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 工艺特点 -->
+                        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-primary">
+                            <label class="block text-on-surface font-semibold text-base mb-3">
+                                工艺特点 <span class="text-error">*</span>
+                            </label>
+                            <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_feature" value="compact"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">占地集约化</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_feature" value="unmanned"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">无人值守</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_feature" value="high_recovery"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">高回收率</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_feature" value="low_pollution"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">低二次污染</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="process_feature" value="temp_range" data-trigger-input="temp_range"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">温度波动适应性</span>
+                                </label>
+                                <div class="range-input-group pl-8" id="temp_range">
+                                    <input type="number" name="temp_min" placeholder="最低温度(℃)" 
+                                        class="w-24 bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-2 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"/>
+                                    <span class="mx-2 text-on-surface-variant">-</span>
+                                    <input type="number" name="temp_max" placeholder="最高温度(℃)" 
+                                        class="w-24 bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-2 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 应用行业及工艺环节 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                            <label class="block text-on-surface font-semibold text-sm mb-2">
+                                应用行业及工艺环节 <span class="text-error">*</span>
+                            </label>
+                            <textarea name="process_application" required rows="4"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                                placeholder="请描述应用行业代码、关键字及工艺环节"></textarea>
+                        </div>
+
+                        <!-- 技术来源 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                技术来源
+                            </label>
+                            <select name="process_source"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择（选填）</option>
+                                <option value="overseas">海外引进</option>
+                                <option value="domestic_innovation">国内自主创新</option>
+                                <option value="domestic_integration">国内自主集成</option>
+                            </select>
+                        </div>
+
+                        <!-- 成熟度 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                成熟度
+                            </label>
+                            <select name="maturity" id="maturitySelect"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择（选填）</option>
+                                <option value="1">1级 - 实验室阶段</option>
+                                <option value="2">2级 - 中试阶段</option>
+                                <option value="3">3级 - 已有应用案例</option>
+                                <option value="4">4级 - 成熟应用</option>
+                                <option value="5">5级 - 广泛应用</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 材料类表单 -->
+                <div id="materialForm" class="dynamic-form step-hidden">
+                    <div class="space-y-4">
+                        <!-- 专业应用领域 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-primary">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                专业应用领域 <span class="text-error">*</span>
+                            </label>
+                            <select name="material_field" required id="materialFieldSelect"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择</option>
+                                <option value="water">水处理</option>
+                                <option value="air">大气污染治理</option>
+                                <option value="soil">土壤修复</option>
+                                <option value="solid">固废处理</option>
+                            </select>
+                        </div>
+
+                        <!-- 功能分类（根据领域动态显示） -->
+                        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary-container">
+                            <label class="block text-on-surface font-semibold text-base mb-3">
+                                功能分类或工艺环节 <span class="text-error">*</span>
+                            </label>
+                            <p class="text-xs text-on-surface-variant mb-3">（可多选，根据所选领域显示）</p>
+                            
+                            <!-- 水处理材料 -->
+                            <div class="material-category space-y-3" data-field="water" style="display:none;">
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="filter"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">过滤材料</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="adsorption"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">吸附材料</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="catalyst"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">催化材料</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="membrane"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">膜材料</span>
+                                </label>
+                            </div>
+
+                            <!-- 大气污染材料 -->
+                            <div class="material-category space-y-3" data-field="air" style="display:none;">
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="dust"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">除尘材料</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="desulfurization"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">脱硫材料</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="vocs"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">脱VOCs辅助材料</span>
+                                </label>
+                            </div>
+
+                            <!-- 土壤修复材料 -->
+                            <div class="material-category space-y-3" data-field="soil" style="display:none;">
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="oxidation"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">氧化药剂</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="solidification"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">固化剂</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="material_category" value="soil_adsorption"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">吸附材料</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 应用行业代码 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                            <label class="block text-on-surface font-semibold text-sm mb-2">
+                                应用行业代码及分类 <span class="text-error">*</span>
+                            </label>
+                            <p class="text-xs text-on-surface-variant mb-2">可添加多个应用行业</p>
+                            <div id="industryCodeContainer">
+                                <div class="industry-code-row flex gap-2 mb-2">
+                                    <input type="text" name="material_industry_code[]" required
+                                        class="flex-1 bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                                        placeholder="行业代码"/>
+                                    <input type="text" name="material_industry_name[]" required
+                                        class="flex-1 bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                                        placeholder="行业名称"/>
+                                </div>
+                            </div>
+                            <button type="button" id="addIndustryCode"
+                                class="mt-2 text-primary text-sm font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-lg">add_circle</span>
+                                添加行业
+                            </button>
+                        </div>
+
+                        <!-- 成熟度 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                成熟度
+                            </label>
+                            <select name="maturity" class="maturity-select"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择（选填）</option>
+                                <option value="1">1级 - 实验室阶段</option>
+                                <option value="2">2级 - 中试阶段</option>
+                                <option value="3">3级 - 已有应用案例</option>
+                                <option value="4">4级 - 成熟应用</option>
+                                <option value="5">5级 - 广泛应用</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 设备类表单 -->
+                <div id="equipmentForm" class="dynamic-form step-hidden">
+                    <div class="space-y-4">
+                        <!-- 设备类别 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-primary">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                设备类别 <span class="text-error">*</span>
+                            </label>
+                            <select name="equipment_type" required id="equipmentTypeSelect"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择</option>
+                                <option value="treatment">治理设备</option>
+                                <option value="monitoring">检（监）测设备</option>
+                            </select>
+                        </div>
+
+                        <!-- 治理设备专属字段 -->
+                        <div id="treatmentEquipmentFields" class="equipment-subform" style="display:none;">
+                            <!-- 污染物类别 -->
+                            <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary-container mb-4">
+                                <label class="block text-on-surface font-semibold text-base mb-3">
+                                    污染物类别 <span class="text-error">*</span>
+                                </label>
+                                <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
+                                <div class="space-y-3">
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="pollutant_type" value="conventional"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">常规污染物</span>
+                                    </label>
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="pollutant_type" value="heavy_metal"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">重金属污染物</span>
+                                    </label>
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="pollutant_type" value="special"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">特殊污染物/新污染物</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 设备特点 -->
+                            <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-secondary-container mb-4">
+                                <label class="block text-on-surface font-semibold text-base mb-3">
+                                    设备特点或适用环境
+                                </label>
+                                <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
+                                <div class="space-y-3">
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="equipment_feature" value="unmanned"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">无人值守</span>
+                                    </label>
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="equipment_feature" value="low_failure"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">故障率低</span>
+                                    </label>
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="equipment_feature" value="wide_temp" data-trigger-input="equipment_temp_range"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">宽温适应性</span>
+                                    </label>
+                                    <div class="range-input-group pl-8" id="equipment_temp_range">
+                                        <input type="number" name="equipment_temp_min" placeholder="最低温度(℃)" 
+                                            class="w-24 bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-2 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"/>
+                                        <span class="mx-2 text-on-surface-variant">-</span>
+                                        <input type="number" name="equipment_temp_max" placeholder="最高温度(℃)" 
+                                            class="w-24 bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-2 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 检测设备专属字段 -->
+                        <div id="monitoringEquipmentFields" class="equipment-subform" style="display:none;">
+                            <!-- 检测污染物 -->
+                            <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary-container mb-4">
+                                <label class="block text-on-surface font-semibold text-base mb-3">
+                                    检测污染物 <span class="text-error">*</span>
+                                </label>
+                                <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
+                                <div class="space-y-3">
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="monitoring_pollutant" value="cod"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">COD</span>
+                                    </label>
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="monitoring_pollutant" value="do"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">溶解氧</span>
+                                    </label>
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="monitoring_pollutant" value="chlorine"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">余氯</span>
+                                    </label>
+                                    <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                        <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                            type="checkbox" name="monitoring_pollutant" value="ammonia"/>
+                                        <span class="ml-3 text-on-surface-variant font-medium">氨氮</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 核心性能参数 -->
+                            <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm mb-4">
+                                <label class="block text-on-surface font-semibold text-sm mb-2">
+                                    核心性能与工况适应性参数 <span class="text-error">*</span>
+                                </label>
+                                <p class="text-xs text-on-surface-variant mb-2">请填写测量类型、量程范围、处理风量等参数</p>
+                                <textarea name="monitoring_performance" required rows="5"
+                                    class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                                    placeholder="例如：测量类型：在线监测&#10;量程范围：0-100mg/L&#10;处理风量：1000m³/h"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 来源 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                来源
+                            </label>
+                            <select name="equipment_source"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择（选填）</option>
+                                <option value="domestic">国内生产</option>
+                                <option value="overseas">海外生产</option>
+                            </select>
+                        </div>
+
+                        <!-- 成熟度 -->
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                成熟度
+                            </label>
+                            <select name="maturity" class="maturity-select"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择（选填）</option>
+                                <option value="1">1级 - 实验室阶段</option>
+                                <option value="2">2级 - 中试阶段</option>
+                                <option value="3">3级 - 已有应用案例</option>
+                                <option value="4">4级 - 成熟应用</option>
+                                <option value="5">5级 - 广泛应用</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 步骤4: 案例与获奖（条件显示） -->
+            <div class="step-section step-hidden" data-step="4">
+                <div class="bg-secondary-container/20 p-4 rounded-xl mb-4">
+                    <h3 class="font-bold text-primary mb-2">第四步：补充信息</h3>
+                    <p class="text-xs text-on-surface-variant">案例简介与获奖情况（选填）</p>
+                </div>
+
+                <!-- 案例简介（成熟度3-5级时必填） -->
+                <div id="caseSection" class="space-y-4" style="display:none;">
+                    <div class="bg-primary-container/10 p-4 rounded-xl mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">info</span>
+                            <p class="text-sm text-primary font-medium">您选择的成熟度需要提供案例简介</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-primary">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            项目名称 <span class="text-error">*</span>
+                        </label>
+                        <input type="text" name="case_project_name" id="caseProjectName"
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="请输入项目名称"/>
+                    </div>
+
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-secondary-container">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            业主单位名称 <span class="text-error">*</span>
+                        </label>
+                        <input type="text" name="case_owner" id="caseOwner"
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="请输入业主单位名称"/>
+                    </div>
+
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-tertiary-container">
+                        <label class="block text-on-surface font-semibold text-sm mb-2">
+                            联系人及联系方式 <span class="text-error">*</span>
+                        </label>
+                        <input type="text" name="case_contact" id="caseContact"
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            placeholder="姓名 + 电话/邮箱"/>
+                    </div>
+                </div>
+
+                <!-- 获奖情况 -->
+                <div class="space-y-4 mt-6">
+                    <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                        <label class="block text-on-surface font-semibold text-sm mb-3">
+                            是否获得过奖励
+                        </label>
+                        <select name="has_award" id="hasAwardSelect"
+                            class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                            <option value="no">否</option>
+                            <option value="yes">是</option>
+                        </select>
+                    </div>
+
+                    <div id="awardDetails" style="display:none;">
+                        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-primary mb-4">
+                            <label class="block text-on-surface font-semibold text-base mb-3">
+                                奖项级别 <span class="text-error">*</span>
+                            </label>
+                            <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="award_level" value="international" id="awardInternational"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">国际级</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="award_level" value="national" id="awardNational"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">国家级</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                        type="checkbox" name="award_level" value="provincial" id="awardProvincial"/>
+                                    <span class="ml-3 text-on-surface-variant font-medium">省部级</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+                            <label class="block text-on-surface font-semibold text-sm mb-3">
+                                获奖等级 <span class="text-error">*</span>
+                            </label>
+                            <select name="award_grade" id="awardGrade"
+                                class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                                <option value="">请选择</option>
+                                <option value="special">特等奖</option>
+                                <option value="first">一等奖</option>
+                                <option value="second">二等奖</option>
+                                <option value="third">三等奖</option>
+                                <option value="excellent">优秀奖</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- 提示信息 -->
+        <section class="bg-secondary-container/30 p-4 rounded-xl flex gap-4 items-start">
+            <span class="material-symbols-outlined text-secondary">info</span>
+            <div class="text-xs text-on-secondary-container leading-normal">
+                提示：填报过程中数据会自动保存在本地，您可以随时返回继续填写。提交后调查表将进入审核阶段，如需修改请在24小时内联系平台管理员。
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部导航栏 -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-between items-center px-4 py-3 bg-white/80 backdrop-blur-md shadow-[0_-4px_20px_rgba(0,107,83,0.05)] border-t border-[#f2f4f6]">
+        <button type="button" id="prevBtn" class="flex items-center gap-2 text-slate-500 px-4 py-2 hover:opacity-90 active:scale-95 transition-transform" style="display:none;">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <span class="font-['Inter'] text-sm font-semibold">上一步</span>
+        </button>
+        
+        <button type="button" id="saveDraftBtn" class="flex items-center gap-2 text-slate-500 px-4 py-2 hover:opacity-90 active:scale-95 transition-transform">
+            <span class="material-symbols-outlined">save</span>
+            <span class="font-['Inter'] text-sm font-semibold">保存草稿</span>
+        </button>
+
+        <button type="button" id="nextBtn" class="flex items-center gap-2 bg-[#3cb391] text-white rounded-xl px-8 py-3 shadow-lg shadow-primary-container/20 hover:opacity-90 active:scale-95 transition-transform">
+            <span class="font-['Inter'] text-sm font-bold">下一步</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+
+        <button type="button" id="submitBtn" class="flex items-center gap-2 bg-[#3cb391] text-white rounded-xl px-8 py-3 shadow-lg shadow-primary-container/20 hover:opacity-90 active:scale-95 transition-transform" style="display:none;">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+            <span class="font-['Inter'] text-sm font-bold">提交调查</span>
+        </button>
+    </nav>
+
+    <script>
+        // 状态管理
+        let currentStep = 1;
+        const totalSteps = 4;
+        let selectedFormType = null;
+        const STORAGE_KEY = 'eco_survey_draft';
+        const SUBMITTED_KEY = 'eco_survey_submitted';
+
+        // DOM元素
+        const form = document.getElementById('surveyForm');
+        const stepIndicator = document.getElementById('stepIndicator');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const saveDraftBtn = document.getElementById('saveDraftBtn');
+
+        // 初始化
+        function init() {
+            // 检查是否刚提交过
+            if (localStorage.getItem(SUBMITTED_KEY) === 'true') {
+                localStorage.removeItem(SUBMITTED_KEY);
+                localStorage.removeItem(STORAGE_KEY);
+            } else {
+                // 恢复草稿
+                loadDraft();
+            }
+            
+            updateStepDisplay();
+            bindEvents();
+        }
+
+        // 绑定事件
+        function bindEvents() {
+            // 导航按钮
+            nextBtn.addEventListener('click', handleNext);
+            prevBtn.addEventListener('click', handlePrev);
+            submitBtn.addEventListener('click', handleSubmit);
+            saveDraftBtn.addEventListener('click', saveDraft);
+
+            // 表单类型选择
+            document.querySelectorAll('input[name="formType"]').forEach(radio => {
+                radio.addEventListener('change', handleFormTypeChange);
+            });
+
+            // 对象名称标签更新
+            document.querySelectorAll('input[name="formType"]').forEach(radio => {
+                radio.addEventListener('change', updateObjectNameLabel);
+            });
+
+            // 材料领域选择
+            const materialFieldSelect = document.getElementById('materialFieldSelect');
+            if (materialFieldSelect) {
+                materialFieldSelect.addEventListener('change', handleMaterialFieldChange);
+            }
+
+            // 设备类别选择
+            const equipmentTypeSelect = document.getElementById('equipmentTypeSelect');
+            if (equipmentTypeSelect) {
+                equipmentTypeSelect.addEventListener('change', handleEquipmentTypeChange);
+            }
+
+            // 成熟度选择（控制案例显示）
+            document.querySelectorAll('.maturity-select, #maturitySelect').forEach(select => {
+                select.addEventListener('change', handleMaturityChange);
+            });
+
+            // 获奖情况选择
+            const hasAwardSelect = document.getElementById('hasAwardSelect');
+            if (hasAwardSelect) {
+                hasAwardSelect.addEventListener('change', handleAwardChange);
+            }
+
+            // 添加行业代码
+            const addIndustryBtn = document.getElementById('addIndustryCode');
+            if (addIndustryBtn) {
+                addIndustryBtn.addEventListener('click', addIndustryCodeRow);
+            }
+
+            // 复选框触发输入框
+            document.querySelectorAll('input[type="checkbox"][data-trigger-input]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const targetId = this.getAttribute('data-trigger-input');
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        if (this.checked) {
+                            targetElement.classList.add('active');
+                        } else {
+                            targetElement.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            // 自动保存
+            form.addEventListener('input', debounce(saveDraft, 1000));
+        }
+
+        // 更新步骤显示
+        function updateStepDisplay() {
+            stepIndicator.textContent = `步骤 ${currentStep}/${totalSteps}`;
+            
+            // 隐藏所有步骤
+            document.querySelectorAll('.step-section').forEach(section => {
+                section.classList.add('step-hidden');
+            });
+            
+            // 显示当前步骤
+            const currentSection = document.querySelector(`.step-section[data-step="${currentStep}"]`);
+            if (currentSection) {
+                currentSection.classList.remove('step-hidden');
+                currentSection.classList.add('fade-in');
+            }
+
+            // 更新按钮显示
+            prevBtn.style.display = currentStep > 1 ? 'flex' : 'none';
+            
+            if (currentStep === totalSteps) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'flex';
+            } else {
+                nextBtn.style.display = 'flex';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        // 处理下一步
+        function handleNext() {
+            if (!validateCurrentStep()) {
+                return;
+            }
+
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepDisplay();
+                window.scrollTo(0, 0);
+                saveDraft();
+            }
+        }
+
+        // 处理上一步
+        function handlePrev() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepDisplay();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // 验证当前步骤
+        function validateCurrentStep() {
+            const currentSection = document.querySelector(`.step-section[data-step="${currentStep}"]`);
+            if (!currentSection) return true;
+
+            const requiredInputs = currentSection.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredInputs.forEach(input => {
+                // 跳过隐藏的动态表单中的必填项
+                if (input.closest('.dynamic-form') && input.closest('.dynamic-form').classList.contains('step-hidden')) {
+                    return;
+                }
+
+                // 跳过隐藏的设备子表单中的必填项
+                if (input.closest('.equipment-subform') && input.closest('.equipment-subform').style.display === 'none') {
+                    return;
+                }
+
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.classList.add('border-error');
+                    input.focus();
+                } else {
+                    input.classList.remove('border-error');
+                }
+            });
+
+            // 特殊验证：步骤3需要检查案例字段（如果成熟度>=3）
+            if (currentStep === 3) {
+                const maturityValue = parseInt(document.querySelector('select[name="maturity"]')?.value || '0');
+                if (maturityValue >= 3) {
+                    // 确保步骤4会显示
+                    // 这里不做额外验证，因为案例在步骤4
+                }
+            }
+
+            // 特殊验证：步骤4的案例字段
+            if (currentStep === 4) {
+                const caseSection = document.getElementById('caseSection');
+                if (caseSection && caseSection.style.display !== 'none') {
+                    const caseProjectName = document.getElementById('caseProjectName');
+                    const caseOwner = document.getElementById('caseOwner');
+                    const caseContact = document.getElementById('caseContact');
+                    
+                    if (!caseProjectName.value.trim() || !caseOwner.value.trim() || !caseContact.value.trim()) {
+                        isValid = false;
+                        alert('请完整填写案例简介信息');
+                    }
+                }
+
+                // 验证获奖信息
+                const hasAward = document.getElementById('hasAwardSelect').value;
+                if (hasAward === 'yes') {
+                    const awardLevels = document.querySelectorAll('input[name="award_level"]:checked');
+                    const awardGrade = document.getElementById('awardGrade').value;
+                    
+                    if (awardLevels.length === 0 || !awardGrade) {
+                        isValid = false;
+                        alert('请完整填写获奖信息');
+                    }
+                }
+            }
+
+            if (!isValid) {
+                alert('请填写所有必填项');
+            }
+
+            return isValid;
+        }
+
+        // 处理表单类型变化
+        function handleFormTypeChange(e) {
+            selectedFormType = e.target.value;
+            
+            // 隐藏所有动态表单
+            document.querySelectorAll('.dynamic-form').forEach(form => {
+                form.classList.add('step-hidden');
+            });
+
+            // 显示选中的表单
+            const targetForm = document.getElementById(`${selectedFormType}Form`);
+            if (targetForm) {
+                targetForm.classList.remove('step-hidden');
+            }
+        }
+
+        // 更新对象名称标签
+        function updateObjectNameLabel() {
+            const formType = document.querySelector('input[name="formType"]:checked')?.value;
+            const label = document.getElementById('objectNameLabel');
+            
+            if (formType === 'process') {
+                label.textContent = '工艺名称';
+            } else if (formType === 'material') {
+                label.textContent = '材料名称';
+            } else if (formType === 'equipment') {
+                label.textContent = '设备名称';
+            }
+        }
+
+        // 处理材料领域变化
+        function handleMaterialFieldChange(e) {
+            const selectedField = e.target.value;
+            
+            // 隐藏所有材料分类
+            document.querySelectorAll('.material-category').forEach(cat => {
+                cat.style.display = 'none';
+                // 取消选中
+                cat.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            });
+
+            // 显示对应分类
+            const targetCategory = document.querySelector(`.material-category[data-field="${selectedField}"]`);
+            if (targetCategory) {
+                targetCategory.style.display = 'block';
+            }
+        }
+
+        // 处理设备类别变化
+        function handleEquipmentTypeChange(e) {
+            const selectedType = e.target.value;
+            
+            // 隐藏所有设备子表单
+            document.querySelectorAll('.equipment-subform').forEach(subform => {
+                subform.style.display = 'none';
+                // 清除必填验证
+                subform.querySelectorAll('[required]').forEach(input => {
+                    input.removeAttribute('required');
+                });
+            });
+
+            // 显示对应子表单
+            if (selectedType === 'treatment') {
+                const treatmentFields = document.getElementById('treatmentEquipmentFields');
+                treatmentFields.style.display = 'block';
+                treatmentFields.querySelectorAll('input[name="pollutant_type"]').forEach(input => {
+                    input.closest('label').querySelector('input').setAttribute('required', 'required');
+                });
+            } else if (selectedType === 'monitoring') {
+                const monitoringFields = document.getElementById('monitoringEquipmentFields');
+                monitoringFields.style.display = 'block';
+                monitoringFields.querySelector('textarea[name="monitoring_performance"]').setAttribute('required', 'required');
+            }
+        }
+
+        // 处理成熟度变化
+        function handleMaturityChange(e) {
+            const maturityValue = parseInt(e.target.value);
+            const caseSection = document.getElementById('caseSection');
+            
+            if (maturityValue >= 3 && maturityValue <= 5) {
+                caseSection.style.display = 'block';
+                // 设置案例字段为必填
+                document.getElementById('caseProjectName').setAttribute('required', 'required');
+                document.getElementById('caseOwner').setAttribute('required', 'required');
+                document.getElementById('caseContact').setAttribute('required', 'required');
+            } else {
+                caseSection.style.display = 'none';
+                // 移除必填
+                document.getElementById('caseProjectName').removeAttribute('required');
+                document.getElementById('caseOwner').removeAttribute('required');
+                document.getElementById('caseContact').removeAttribute('required');
+            }
+        }
+
+        // 处理获奖情况变化
+        function handleAwardChange(e) {
+            const hasAward = e.target.value;
+            const awardDetails = document.getElementById('awardDetails');
+            
+            if (hasAward === 'yes') {
+                awardDetails.style.display = 'block';
+                document.getElementById('awardGrade').setAttribute('required', 'required');
+            } else {
+                awardDetails.style.display = 'none';
+                document.getElementById('awardGrade').removeAttribute('required');
+                // 清除选择
+                document.querySelectorAll('input[name="award_level"]').forEach(cb => cb.checked = false);
+                document.getElementById('awardGrade').value = '';
+            }
+        }
+
+        // 添加行业代码行
+        function addIndustryCodeRow() {
+            const container = document.getElementById('industryCodeContainer');
+            const newRow = document.createElement('div');
+            newRow.className = 'industry-code-row flex gap-2 mb-2';
+            newRow.innerHTML = `
+                <input type="text" name="material_industry_code[]" required
+                    class="flex-1 bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                    placeholder="行业代码"/>
+                <input type="text" name="material_industry_name[]" required
+                    class="flex-1 bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                    placeholder="行业名称"/>
+                <button type="button" class="remove-industry-btn text-error p-2">
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
+            `;
+            container.appendChild(newRow);
+
+            // 绑定删除事件
+            newRow.querySelector('.remove-industry-btn').addEventListener('click', function() {
+                newRow.remove();
+            });
+        }
+
+        // 保存草稿
+        function saveDraft() {
+            const formData = new FormData(form);
+            const data = {
+                currentStep,
+                selectedFormType,
+                formData: {}
+            };
+
+            // 保存所有表单数据
+            for (let [key, value] of formData.entries()) {
+                if (key.endsWith('[]')) {
+                    if (!data.formData[key]) {
+                        data.formData[key] = [];
+                    }
+                    data.formData[key].push(value);
+                } else {
+                    data.formData[key] = value;
+                }
+            }
+
+            // 保存复选框状态
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                data.formData[`checkbox_${checkbox.name}_${checkbox.value}`] = checkbox.checked;
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            
+            // 显示保存提示
+            showToast('草稿已保存');
+        }
+
+        // 加载草稿
+        function loadDraft() {
+            const savedData = localStorage.getItem(STORAGE_KEY);
+            if (!savedData) return;
+
+            try {
+                const data = JSON.parse(savedData);
+                currentStep = data.currentStep || 1;
+                selectedFormType = data.selectedFormType;
+
+                // 恢复表单数据
+                Object.keys(data.formData).forEach(key => {
+                    if (key.startsWith('checkbox_')) {
+                        // 恢复复选框
+                        const parts = key.replace('checkbox_', '').split('_');
+                        const name = parts.slice(0, -1).join('_');
+                        const value = parts[parts.length - 1];
+                        const checkbox = document.querySelector(`input[type="checkbox"][name="${name}"][value="${value}"]`);
+                        if (checkbox) {
+                            checkbox.checked = data.formData[key];
+                        }
+                    } else if (key.endsWith('[]')) {
+                        // 处理数组字段（如行业代码）
+                        // 这里简化处理，实际可能需要动态添加行
+                    } else {
+                        const input = document.querySelector(`[name="${key}"]`);
+                        if (input) {
+                            if (input.type === 'radio') {
+                                const radio = document.querySelector(`input[name="${key}"][value="${data.formData[key]}"]`);
+                                if (radio) radio.checked = true;
+                            } else {
+                                input.value = data.formData[key];
+                            }
+                        }
+                    }
+                });
+
+                // 触发相关事件以更新UI
+                if (selectedFormType) {
+                    const formTypeRadio = document.querySelector(`input[name="formType"][value="${selectedFormType}"]`);
+                    if (formTypeRadio) {
+                        formTypeRadio.checked = true;
+                        handleFormTypeChange({ target: formTypeRadio });
+                        updateObjectNameLabel();
+                    }
+                }
+
+                showToast('已恢复上次填写内容');
+            } catch (e) {
+                console.error('加载草稿失败', e);
+            }
+        }
+
+        // 提交表单
+        function handleSubmit() {
+            if (!validateCurrentStep()) {
+                return;
+            }
+
+            if (confirm('确认提交调查表？提交后将无法修改。')) {
+                const formData = new FormData(form);
+                const submitData = {};
+
+                for (let [key, value] of formData.entries()) {
+                    if (key.endsWith('[]')) {
+                        if (!submitData[key]) {
+                            submitData[key] = [];
+                        }
+                        submitData[key].push(value);
+                    } else {
+                        submitData[key] = value;
+                    }
+                }
+
+                // 这里应该发送到服务器
+                console.log('提交数据：', submitData);
+
+                // 模拟提交成功
+                localStorage.setItem(SUBMITTED_KEY, 'true');
+                localStorage.removeItem(STORAGE_KEY);
+                
+                alert('提交成功！感谢您的填报。');
+                
+                // 重置表单
+                form.reset();
+                currentStep = 1;
+                selectedFormType = null;
+                updateStepDisplay();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // 显示提示
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-primary text-on-primary px-6 py-3 rounded-xl shadow-lg z-50';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 2000);
+        }
+
+        // 防抖函数
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // 启动应用
+        init();
+    </script>
+</body>
+</html>

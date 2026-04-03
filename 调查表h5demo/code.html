@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f8f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-container": "#004117",
+                        "outline-variant": "#bccac2",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#bde9ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-fixed-variant": "#005320",
+                        "tertiary-fixed-dim": "#6ddd81",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#386476",
+                        "inverse-primary": "#68dab6",
+                        "surface": "#f8f9fb",
+                        "surface-dim": "#d8dadc",
+                        "tertiary": "#006e2c",
+                        "on-primary-fixed": "#002117",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001f29",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary-fixed": "#002108",
+                        "tertiary-fixed": "#89fa9b",
+                        "surface-container": "#eceef0",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#003f30",
+                        "surface-tint": "#006b53",
+                        "outline": "#6d7a74",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#3d687b",
+                        "tertiary-container": "#43b55e",
+                        "primary-fixed": "#86f7d1",
+                        "secondary-fixed-dim": "#a1cde2",
+                        "primary-fixed-dim": "#68dab6",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-fixed-variant": "#00513e",
+                        "surface-bright": "#f8f9fb",
+                        "on-surface-variant": "#3d4944",
+                        "secondary-container": "#bae6fc",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#3cb391",
+                        "on-secondary-fixed-variant": "#1e4c5d",
+                        "primary": "#006b53",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .tonal-shift { background-color: #f2f4f6; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9fb] shadow-sm flex items-center px-4 h-16 w-full">
+<div class="flex items-center space-x-3">
+<button class="p-2 hover:bg-[#f2f4f6] transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined text-[#006b53]" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold text-lg tracking-tight text-[#006b53]">生态环境技术调查平台-调查表填报</h1>
+</div>
+</header>
+<main class="pt-20 px-4 space-y-4 max-w-2xl mx-auto">
+<!-- Hero Section / Introduction -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_rgba(0,107,83,0.05)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<h2 class="text-primary font-bold text-lg">调查说明</h2>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                    本调查旨在收集各企业在生态环境领域的技术应用现状及创新成果。您的反馈将作为国家环保技术目录更新的重要参考依据，助力绿色产业协同发展。请如实填写以下信息。
+                </p>
+</div>
+</section>
+<!-- Question 1: Single Choice -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-primary">
+<div class="mb-4">
+<label class="block text-on-surface font-semibold text-base">
+                    1. 您的企业所属领域？ <span class="text-error">*</span>
+</label>
+</div>
+<div class="space-y-3">
+<label class="flex items-center p-4 rounded-xl border border-outline-variant/20 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20" name="industry" type="radio"/>
+<span class="ml-3 text-on-surface-variant group-hover:text-primary font-medium">Waste Water Treatment</span>
+</label>
+<label class="flex items-center p-4 rounded-xl border border-outline-variant/20 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20" name="industry" type="radio"/>
+<span class="ml-3 text-on-surface-variant group-hover:text-primary font-medium">Solid Waste Treatment</span>
+</label>
+<label class="flex items-center p-4 rounded-xl border border-outline-variant/20 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20" name="industry" type="radio"/>
+<span class="ml-3 text-on-surface-variant group-hover:text-primary font-medium">Atmospheric Pollution Control</span>
+</label>
+</div>
+</section>
+<!-- Question 2: Multiple Choice -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-secondary-container">
+<div class="mb-4">
+<label class="block text-on-surface font-semibold text-base">
+                    2. 贵公司目前正在使用的核心技术包含哪些？ <span class="text-error">*</span>
+</label>
+<p class="text-xs text-on-surface-variant mt-1">（可多选）</p>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<label class="flex items-center p-4 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+<input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" type="checkbox"/>
+<span class="ml-3 text-on-surface-variant font-medium">Membrane Treatment</span>
+</label>
+<label class="flex items-center p-4 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+<input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" type="checkbox"/>
+<span class="ml-3 text-on-surface-variant font-medium">Biodegradation</span>
+</label>
+<label class="flex items-center p-4 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+<input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" type="checkbox"/>
+<span class="ml-3 text-on-surface-variant font-medium">Incineration</span>
+</label>
+<label class="flex items-center p-4 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+<input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" type="checkbox"/>
+<span class="ml-3 text-on-surface-variant font-medium">Resource Recovery</span>
+</label>
+</div>
+</section>
+<!-- Question 3: Text Input -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary-container">
+<div class="mb-4">
+<label class="block text-on-surface font-semibold text-base">
+                    3. 请简述该项技术的应用场景及优势。 <span class="text-error">*</span>
+</label>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-4 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/40" placeholder="请输入您的描述..." rows="5"></textarea>
+<div class="absolute bottom-3 right-3 text-[10px] text-on-surface-variant/50">0 / 500</div>
+</div>
+</section>
+<!-- Informational Card (Secondary Accent) -->
+<section class="bg-secondary-container/30 p-4 rounded-xl flex gap-4 items-start">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<div class="text-xs text-on-secondary-container leading-normal">
+                提示：提交后调查表将进入审核阶段，如需修改请在24小时内联系平台管理员。
+            </div>
+</section>
+</main>
+<!-- BottomNavBar as Submit Area -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-white/80 backdrop-blur-md shadow-[0_-4px_20px_rgba(0,107,83,0.05)] border-t border-[#f2f4f6]">
+<button class="flex flex-col items-center justify-center text-slate-500 px-6 py-2 hover:opacity-90 active:scale-98 transition-transform">
+<span class="material-symbols-outlined mb-1" data-icon="save">save</span>
+<span class="font-['Inter'] text-xs font-semibold">保存草稿</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-[#3cb391] text-white rounded-xl px-12 py-3 shadow-lg shadow-primary-container/20 hover:opacity-90 active:scale-98 transition-transform">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+<span class="font-['Inter'] text-sm font-bold">提交调查</span>
+</div>
+</button>
+</nav>
+</body></html>
