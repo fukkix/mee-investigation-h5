@@ -69,13 +69,13 @@
     </div>
 
     <script>
-        // 获取当前访问的地址
-        const currentUrl = window.location.href.replace('qrcode.html', 'survey.html');
-        document.getElementById('urlText').textContent = currentUrl;
+        // 使用局域网IP地址
+        const surveyUrl = 'http://192.168.3.105:8080/survey.html';
+        document.getElementById('urlText').textContent = surveyUrl;
         
         // 生成二维码
         new QRCode(document.getElementById("qrcode"), {
-            text: currentUrl,
+            text: surveyUrl,
             width: 256,
             height: 256,
             colorDark: "#006b53",
