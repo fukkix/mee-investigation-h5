@@ -414,8 +414,14 @@
                 </div>
             `;
             
-            // 6. 工艺环节（条件显示）
+            // 6. 工艺环节（条件显示）- 使用配置的stageOptions或默认选项
             if (config.showStageWhen && config.showStageWhen.length > 0) {
+                const stageOptions = config.stageOptions || [
+                    { value: 'pretreatment', label: '预处理（一级）' },
+                    { value: 'main', label: '主处理（二级）' },
+                    { value: 'advanced', label: '深度处理（三级）' },
+                    { value: 'post', label: '后处理' }
+                ];
                 html += `
                     <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-secondary-container mt-4" id="processStageSection" style="display:none;">
                         <label class="block text-on-surface font-semibold text-base mb-3">
@@ -423,34 +429,56 @@
                         </label>
                         <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
                         <div class="space-y-3">
+                            ${stageOptions.map(opt => `
                             <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
                                 <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
-                                    type="checkbox" name="process_stage" value="pretreatment"/>
-                                <span class="ml-3 text-on-surface-variant font-medium">预处理（一级）</span>
+                                    type="checkbox" name="process_stage" value="${opt.value}"/>
+                                <span class="ml-3 text-on-surface-variant font-medium">${opt.label}</span>
                             </label>
-                            <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
-                                <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
-                                    type="checkbox" name="process_stage" value="main"/>
-                                <span class="ml-3 text-on-surface-variant font-medium">主处理（二级）</span>
-                            </label>
-                            <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
-                                <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
-                                    type="checkbox" name="process_stage" value="advanced"/>
-                                <span class="ml-3 text-on-surface-variant font-medium">深度处理（三级）</span>
-                            </label>
-                            <label class="flex items-center p-3 rounded-xl bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
-                                <input class="w-5 h-5 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
-                                    type="checkbox" name="process_stage" value="post"/>
-                                <span class="ml-3 text-on-surface-variant font-medium">后处理</span>
-                            </label>
+                            `).join('')}
                         </div>
                     </div>
                 `;
             }
             
-            // 7. 工艺特点（仅水处理）
-            if (field === 'water' && config.features) {
-                html += generateWaterFeaturesSection(config.features);
+            // 6b. 固废工艺分类（仅固废领域）
+            if (config.processClassification) {
+                html += `
+                    <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary-container mt-4">
+                        <label class="block text-on-surface font-semibold text-base mb-3">
+                            工艺分类 <span class="text-error">*</span>
+                        </label>
+                        <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
+                        <div class="space-y-2">
+                            ${config.processClassification.map(opt => `
+                            <label class="flex items-center p-2 rounded-lg bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                <input class="w-4 h-4 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
+                                    type="checkbox" name="process_classification" value="${opt.value}"/>
+                                <span class="ml-2 text-on-surface-variant text-sm">${opt.label}</span>
+                            </label>
+                            `).join('')}
+                            ${config.processClassificationOther ? `
+                            <div>
+                                <label class="flex items-center p-2 rounded-lg bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
+                                    <input class="w-4 h-4 rounded text-primary-container border-outline-variant focus:ring-primary/20 feature-with-input" 
+                                        type="checkbox" name="process_classification" value="other" data-input-id="process_classification_other_input"/>
+                                    <span class="ml-2 text-on-surface-variant text-sm">其他</span>
+                                </label>
+                                <div id="process_classification_other_input" class="pl-6 mt-2" style="display:none;">
+                                    <input type="text" name="process_classification_other_detail" 
+                                        class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-2 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                                        placeholder="请填写其他工艺分类"/>
+                                </div>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 7. 工艺特点（所有有features配置的领域）
+            if (config.features) {
+                html += generateFeaturesSection(config.features, field);
             }
             
             // 8. 污染物治理对象（简化版）
@@ -556,18 +584,20 @@
         }
 
         
-        function generateWaterFeaturesSection(features) {
+        function generateFeaturesSection(features, field) {
+            const fieldPrefix = field || 'process';
             let html = `
                 <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-primary mt-4">
                     <label class="block text-on-surface font-semibold text-base mb-3">
-                        工艺特点 <span class="text-error">*</span>
+                        工艺特点 ${field === 'water' ? '<span class="text-error">*</span>' : ''}
                     </label>
-                    <p class="text-xs text-on-surface-variant mb-3">（可多选）</p>
+                    <p class="text-xs text-on-surface-variant mb-3">（可多选${field !== 'water' ? '，选填' : ''}）</p>
                     <div class="space-y-2">
             `;
             
             // 带二级菜单的选项
-            features.withInput.forEach(feature => {
+            if (features.withInput) {
+                features.withInput.forEach(feature => {
                 const inputId = `feature_input_${feature.value}`;
                 const isRangeInput = /___\s*至\s*___/.test(feature.placeholder || '');
                 html += `
@@ -598,9 +628,11 @@
                     </div>
                 `;
             });
+            }
             
             // 简单勾选的选项
-            features.simple.forEach(feature => {
+            if (features.simple) {
+                features.simple.forEach(feature => {
                 html += `
                     <label class="flex items-center p-2 rounded-lg bg-surface-container-low/50 hover:bg-secondary-container/20 transition-colors cursor-pointer">
                         <input class="w-4 h-4 rounded text-primary-container border-outline-variant focus:ring-primary/20" 
@@ -609,6 +641,7 @@
                     </label>
                 `;
             });
+            }
             
             // 其他选项
             if (features.other) {
@@ -752,8 +785,18 @@
                     pollutants.other ? [{ value: 'solid_other', label: '其他', placeholder: '请填写其他固废类型' }] : null);
 
             } else if (field === 'eco') {
-                inner += renderPollutantGroup('pollutionControl', '污染治理型 - 常规污染物',
+                inner += renderPollutantGroup('pollutionControl_conv', '污染治理型 - 常规污染物',
                     pollutants.pollutionControl.conventional);
+                if (pollutants.pollutionControl.heavyMetal)
+                    inner += renderPollutantGroup('pollutionControl_heavy', '污染治理型 - 重金属污染物',
+                        pollutants.pollutionControl.heavyMetal);
+                if (pollutants.pollutionControl.special)
+                    inner += renderPollutantGroup('pollutionControl_spec', '污染治理型 - 特殊污染物',
+                        pollutants.pollutionControl.special);
+                if (pollutants.pollutionControl.newPollutant)
+                    inner += renderPollutantStandalone('eco_new_pollutant', '污染治理型 - 新污染物', '请填写新污染物');
+                if (pollutants.pollutionControl.other)
+                    inner += renderPollutantStandalone('eco_pollution_other', '污染治理型 - 其他', '请填写其他');
                 inner += renderPollutantGroup('restoration', '生态恢复/重建型', pollutants.restoration);
                 inner += renderPollutantGroup('resourceProtection', '资源保护与可持续利用型', pollutants.resourceProtection);
                 inner += renderPollutantGroup('disasterPrevention', '灾害防治与风险减缓型', pollutants.disasterPrevention);
@@ -1297,7 +1340,7 @@
                 cfg.workCond.forEach(f => { html += '<div><label class="block text-on-surface-variant text-sm mb-1">'+f.l+'</label><input type="text" name="'+f.n+'" class="w-full bg-surface-container-low/30 border border-outline-variant/20 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none" placeholder="'+f.ph+'"/></div>'; });
                 html += '</div></div>';
             } else if (cfg.type === 'grouped') {
-                html = '<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary-container mt-4"><label class="block text-on-surface font-semibold text-base mb-3">检测设备类型 <span class="text-error">*</span></label><p class="text-xs text-on-surface-variant mb-3">点击分类展开子选项，可多选</p><div class="space-y-1">';
+                html = '<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary-container mt-4"><label class="block text-on-surface font-semibold text-base mb-3">检测内容 <span class="text-error">*</span></label><p class="text-xs text-on-surface-variant mb-3">点击分类展开子选项，可多选</p><div class="space-y-1">';
                 cfg.groups.forEach(g => { html += renderEqPollutantGroup(g); });
                 html += '</div></div>';
             } else {
